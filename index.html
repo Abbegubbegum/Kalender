@@ -7,9 +7,22 @@
     <script src="./js/main.js"></script>
     <title>Kalender</title>
   </head>
-  <body>
-    <header></header>
-    <main></main>
+  <body class="grid">
+    <header class="grid center">
+      <h1>Todo</h1>
+    </header>
+    <main class="grid auto-column">
+      <section class="border grid center">
+        <div class="todo-box">
+          <div class="todo-list"></div>
+          <form data-todo-form>
+            <input type="text" data-todo-input />
+            <button type="button">Add</button>
+          </form>
+        </div>
+      </section>
+      <div></div>
+    </main>
     <footer></footer>
   </body>
 </html>

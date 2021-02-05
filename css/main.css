@@ -1,9 +1,7 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+/*
+font-family: 'Open Sans', sans-serif;
+*/
 :root {
   --dark-grey: #2b2d42;
   --light-grey: #8d99ae;
@@ -12,10 +10,30 @@
   --dark-red: #d90429;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   max-width: 100vw;
   min-height: 100vh;
+  grid-template-rows: 10vh 1fr 10vh;
+  background-color: var(--off-white);
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  background-color: var(--dark-grey);
+  color: var(--off-white);
+  font-size: 1.5rem;
+}
+
+section {
+  margin: 0.5rem;
+  background-color: var(--dark-red);
 }
 
 .border {
@@ -32,4 +50,11 @@ body {
 
 .auto-rows {
   grid-auto-flow: row;
+}
+
+.center {
+  place-items: center;
+}
+
+@media (min-width: 600px) {
 }
