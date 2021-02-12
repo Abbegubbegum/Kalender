@@ -25,6 +25,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+main {
+  grid-template-columns: 1fr 1fr;
+}
+
 header {
   background-color: var(--dark-grey);
   color: var(--off-white);
@@ -36,8 +40,40 @@ section {
   background-color: var(--dark-red);
 }
 
+ul {
+  margin: 2rem;
+  color: var(--off-white);
+}
+
+li {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+input {
+  font-size: 1.5rem;
+  margin: 0.5rem 0.5rem;
+  outline: none;
+  background: transparent;
+  color: var(--off-white);
+  border: 0;
+  border-bottom: 3px solid var(--off-white);
+}
+
+button {
+  background: transparent;
+  font-size: 1.5rem;
+  border-color: var(--dark-grey);
+  border: 0;
+  color: var(--off-white);
+  outline: none;
+  cursor: pointer;
+}
+
 .border {
   border: 2px solid black;
+  border-radius: 50px;
 }
 
 .grid {
