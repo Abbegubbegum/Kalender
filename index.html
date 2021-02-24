@@ -22,16 +22,18 @@
             </ul> -->
           </div>
           <form data-todo-form>
-            <div id="todo-inputs">
-              <input type="text" data-todo-text />
+            <div class="form-flexbox">
+              <input type="text" data-todo-text autofocus />
               <input type="datetime-local" data-todo-date min="" />
             </div>
-            <button type="submit">Add</button>
+            <div class="form-flexbox">
+              <button type="submit">Add</button>
+              <button type="button" onclick="resetDate()">Reset</button>
+            </div>
           </form>
         </div>
       </section>
       <div></div>
     </main>
-    <footer></footer>
   </body>
 </html>

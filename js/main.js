@@ -42,7 +42,11 @@ function remove(event) {
 function update() {
   todoOutput.innerHTML = "";
   todoOutput.append(createList(todos));
-  todoDateInput.min = isoTime;
+  todoDateInput.min = new Date(Date.now() - timeZoneOffset).toISOString().slice(0, -8);
+}
+
+function resetDate() {
+  todoDateInput.value = "";
 }
 
 update();
