@@ -1,20 +1,24 @@
 "use strict";
 
+let todos = ["Äta", "Sova", "Dansa"];
 let todoOutput = document.querySelector("[data-todo-list]");
 let todoForm = document.querySelector("[data-todo-form]");
-let todoInput = document.querySelector("[data-todo-input]");
-let todos = ["Äta", "Sova", "Dansa"];
+let todoTextInput = document.querySelector("[data-todo-text]");
+let todoDateInput = document.querySelector("[data-todo-date]");
+
+var timeZoneOffset = new Date().getTimezoneOffset() * 60000;
+var isoTime = new Date(Date.now() - timeZoneOffset).toISOString().slice(0, -8);
 
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  let input = todoInput.value.trim();
+  let input = todoTextInput.value.trim();
 
   if (input === "") {
     return;
   }
   todos.push(input);
   update();
-  todoInput.value = "";
+  todoTextInput.value = "";
 });
 
 function createList(items) {
@@ -22,7 +26,7 @@ function createList(items) {
   items.forEach((item) => {
     let listItem = document.createElement("li");
     listItem.innerText = item;
-
+    listItem.classList.add("list-item");
     listItem.addEventListener("click", remove);
     list.append(listItem);
   });
@@ -38,6 +42,7 @@ function remove(event) {
 function update() {
   todoOutput.innerHTML = "";
   todoOutput.append(createList(todos));
+  todoDateInput.min = isoTime;
 }
 
 update();

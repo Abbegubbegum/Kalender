@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   grid-template-rows: 10vh 1fr 10vh;
   background-color: var(--off-white);
+  color: var(--off-white);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -31,7 +32,7 @@ main {
 
 header {
   background-color: var(--dark-grey);
-  color: var(--off-white);
+
   font-size: 1.5rem;
 }
 
@@ -42,13 +43,24 @@ section {
 
 ul {
   margin: 2rem;
-  color: var(--off-white);
 }
 
-li {
-  font-family: "Open Sans", sans-serif;
+.list-item {
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+.list-item:hover {
+  color: var(--light-grey);
+}
+
+form[data-todo-form] {
+  display: flex;
+}
+
+#todo-inputs {
+  display: flex;
+  flex-direction: column;
 }
 
 input {
@@ -56,8 +68,12 @@ input {
   margin: 0.5rem 0.5rem;
   outline: none;
   background: transparent;
-  color: var(--off-white);
+  color: inherit;
   border: 0;
+  width: 20vw;
+}
+
+input[data-todo-text] {
   border-bottom: 3px solid var(--off-white);
 }
 
@@ -65,8 +81,8 @@ button {
   background: transparent;
   font-size: 1.5rem;
   border-color: var(--dark-grey);
+  color: inherit;
   border: 0;
-  color: var(--off-white);
   outline: none;
   cursor: pointer;
 }
