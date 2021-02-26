@@ -8,11 +8,11 @@ class TodoItem {
   }
 }
 
-// const LOCAL_STORAGE_KEY_TODOS = "app.todos";
+const localKey = "todolist";
 
 let todos = [];
 
-// todos = JSOM.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TODOS));
+todos = JSON.parse(localStorage.getItem(localKey));
 
 let todoOutput = document.querySelector("[data-todo-list]");
 let todoForm = document.querySelector("[data-todo-form]");
@@ -58,7 +58,7 @@ function remove(event) {
 
 function update() {
   todos = todos.filter((e) => e.text !== "");
-  // save();
+  save();
   todoOutput.innerHTML = "";
   todoOutput.append(createList(todos));
   todoDateInput.min = new Date(Date.now() - timeZoneOffset)
@@ -70,8 +70,10 @@ function resetDate() {
   todoDateInput.value = "";
 }
 
-// function save() {
-//   localStorage.setItem(LOCAL_STORAGE_KEY_TODOS, JSON.stringify(todos));
-// }
+function save() {
+  localStorage.setItem(localKey, JSON.stringify(todos));
+}
 
 update();
+
+// "[{"text":"Test","date":"2021-02-26 17:00","id":"1614344780411"}]"
