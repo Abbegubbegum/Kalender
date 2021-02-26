@@ -1,6 +1,19 @@
 "use strict";
 
-let todos = ["Äta", "Sova", "Dansa"];
+class TodoItem {
+  constructor(text, date) {
+    this.text = text;
+    this.date = date;
+    this.id = Date.now().toString();
+  }
+}
+
+// const LOCAL_STORAGE_KEY_TODOS = "app.todos";
+
+let todos = [];
+
+// todos = JSOM.parse(localStorage.getItem(LOCAL_STORAGE_KEY_TODOS));
+
 let todoOutput = document.querySelector("[data-todo-list]");
 let todoForm = document.querySelector("[data-todo-form]");
 let todoTextInput = document.querySelector("[data-todo-text]");
@@ -11,42 +24,54 @@ var isoTime = new Date(Date.now() - timeZoneOffset).toISOString().slice(0, -8);
 
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  let input = todoTextInput.value.trim();
-
-  if (input === "") {
+  let textInput = todoTextInput.value.trim();
+  if (textInput === "") {
     return;
   }
-  todos.push(input);
+
+  let dateInput = todoDateInput.value.replace("T", " ");
+
+  todos.push(new TodoItem(textInput, dateInput));
   update();
   todoTextInput.value = "";
+  resetDate();
 });
 
 function createList(items) {
   let list = document.createElement("ul");
   items.forEach((item) => {
     let listItem = document.createElement("li");
-    listItem.innerText = item;
+    listItem.innerText = item.text + " " + item.date;
     listItem.classList.add("list-item");
     listItem.addEventListener("click", remove);
+    listItem.setAttribute("data-id", item.id);
     list.append(listItem);
   });
   return list;
 }
 
 function remove(event) {
-  let item = event.target.innerText;
-  todos = todos.filter((e) => e !== item);
+  let item = event.target.getAttribute("data-id");
+  todos = todos.filter((e) => e.id !== item);
   update();
 }
 
 function update() {
+  todos = todos.filter((e) => e.text !== "");
+  // save();
   todoOutput.innerHTML = "";
   todoOutput.append(createList(todos));
-  todoDateInput.min = new Date(Date.now() - timeZoneOffset).toISOString().slice(0, -8);
+  todoDateInput.min = new Date(Date.now() - timeZoneOffset)
+    .toISOString()
+    .slice(0, -8);
 }
 
 function resetDate() {
   todoDateInput.value = "";
 }
+
+// function save() {
+//   localStorage.setItem(LOCAL_STORAGE_KEY_TODOS, JSON.stringify(todos));
+// }
 
 update();
